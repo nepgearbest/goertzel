@@ -34,7 +34,7 @@ public:
    void encode(int x);//对频率fx进行功率读取
    std::vector<std::complex<double>> C_c;
    std::vector<std::complex<double>> P_p;
-   std::vector<double> S;
+   std::vector<double> S;//TODO:取一个块，S的处理
    std::complex pi={0.0,std::acos(-1)};
 };
 
