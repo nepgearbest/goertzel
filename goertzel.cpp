@@ -6,7 +6,6 @@
 class goertzel
 {
 private:
-    
 public:
     void k_count();
     void dp_start(double [8][3]);
@@ -19,22 +18,52 @@ public:
    int K=0;
    double R=8200.00000;
     int fs=8000;
-    std::vector<int> f={697,770,852,941,1209,1336,1477,1633};//目标频率组 //update 请用vector改写
+    std::vector<int> f={697,770,852,941,1209,1336,1477,1633};//目标频率组 //TODO: 请用vector改写
     int temp=0;
     std::vector<int> K_temp;
     std::vector<int> Ks;
     double sum_arv;//计算每组k时
+    /*
+    S：采样值
+    算法部分：Q0=CQ1-Q2+S
+    Q1=Q0
+    Q2=Q1
+
+    C=2*cos(2*pi*Ks/N) //
+    */
+   void encode(int x);//对频率fx进行功率读取
+   std::vector<std::complex<double>> C_c;
+   std::vector<std::complex<double>> P_p;
+   std::vector<double> S;
+   std::complex pi={0.0,std::acos(-1)};
 };
 
 
 goertzel::goertzel()
 {
-
+/*
+执行K,N的初始化取值
+*/
 }
 
 goertzel::~goertzel()
 {
 }
+
+void goertzel::encode(int x)//x倒数
+{
+    std::complex<double> Q0,Q1,Q2,C,P;
+    C=2*std::cos(2*pi*Ks[x]/K);
+    for (int i = 0; i < S.size(); i++)
+    {
+        Q0=C*Q1-Q2+S[i];
+        Q2=Q1;
+        Q1=Q0;
+    }
+    P=Q1*Q1+Q2*Q2-Q1*Q2*C;
+    P_p.push_back(P);
+}
+
 void goertzel::dp_start(double a[8][3])
 {
     double dp[8][3];
@@ -86,7 +115,7 @@ void goertzel::k_count()
     {
         sum_arv=0.000;
         double last_k=0;
-        double s_save[8][3];//request: 修改为动态大小，适配f
+        double s_save[8][3];//TODO: 修改为动态大小，适配f
         for (int j = 0; j < f.size(); j++)//注意检查K的值不能是一样的，要跟上一个K比较，使用dp解决。不然在200~210范围内会出现重复解
         {
             s_save[j][0]=f[j]*i/R;
