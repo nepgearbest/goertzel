@@ -21,7 +21,7 @@ public:
     std::vector<int> f={697,770,852,941,1209,1336,1477,1633};//目标频率组 //TODO: 请用vector改写
     int temp=0;
     std::vector<int> K_temp;
-    std::vector<int> Ks;
+    std::vector<int> Ks={17,19,21,24,30,33,37,41};
     double sum_arv;//计算每组k时
     /*
     S：采样值
@@ -31,26 +31,29 @@ public:
 
     C=2*cos(2*pi*Ks/N) //
     */
+   goertzel(std::vector<double> a);
    void encode(int x);//对频率fx进行功率读取
-   std::vector<std::complex<double>> C_c;
-   std::vector<std::complex<double>> P_p;
+   std::vector<std::complex< double > > C_c;
+   std::vector<std::complex< double > > P_p;
    std::vector<double> S;//TODO:取一个块，S的处理
-   std::complex pi={0.0,std::acos(-1)};
+   double pi=3.1415926535;
 };
 
 
-goertzel::goertzel()
+goertzel::goertzel(std::vector<double> a)
 {
 /*
 执行K,N的初始化取值
 */
+K=205;
+S.assign(a.begin(),a.end());
 }
 
 goertzel::~goertzel()
 {
 }
 
-void goertzel::encode(int x)//x倒数
+void goertzel::encode(int x)
 {
     std::complex<double> Q0,Q1,Q2,C,P;
     C=2*std::cos(2*pi*Ks[x]/K);
@@ -62,6 +65,7 @@ void goertzel::encode(int x)//x倒数
     }
     P=Q1*Q1+Q2*Q2-Q1*Q2*C;
     P_p.push_back(P);
+    std::cout<<P.real()<<std::endl;
 }
 
 void goertzel::dp_start(double a[8][3])
