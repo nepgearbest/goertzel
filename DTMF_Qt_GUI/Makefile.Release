@@ -488,6 +488,14 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../qt/5.11.3/mingw53_32/include/QtWidgets/QSpacerItem \
 		../../qt/5.11.3/mingw53_32/include/QtWidgets/QStatusBar \
 		../../qt/5.11.3/mingw53_32/include/QtWidgets/qstatusbar.h \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/QTextEdit \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/qtextedit.h \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		../../qt/5.11.3/mingw53_32/include/QtGui/qtextdocument.h \
+		../../qt/5.11.3/mingw53_32/include/QtGui/qtextoption.h \
+		../../qt/5.11.3/mingw53_32/include/QtGui/qtextcursor.h \
+		../../qt/5.11.3/mingw53_32/include/QtGui/qtextformat.h \
+		../../qt/5.11.3/mingw53_32/include/QtGui/qpen.h \
 		../../qt/5.11.3/mingw53_32/include/QtWidgets/QToolBar \
 		../../qt/5.11.3/mingw53_32/include/QtWidgets/qtoolbar.h \
 		../../qt/5.11.3/mingw53_32/include/QtWidgets/QWidget \
@@ -524,7 +532,8 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		D:/opencv/opencv/mingw-cv/install/include/opencv2/imgcodecs.hpp \
 		D:/opencv/opencv/mingw-cv/install/include/opencv2/videoio.hpp \
 		D:/opencv/opencv/mingw-cv/install/include/opencv2/imgproc/imgproc.hpp \
-		D:/opencv/opencv/mingw-cv/install/include/opencv2/imgproc.hpp
+		D:/opencv/opencv/mingw-cv/install/include/opencv2/imgproc.hpp \
+		../../qt/5.11.3/mingw53_32/include/QtGui/QImage
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o mainwindow.cpp
 
 release/moc_mainwindow.o: release/moc_mainwindow.cpp 

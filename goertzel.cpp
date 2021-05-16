@@ -31,6 +31,7 @@ public:
 
     C=2*cos(2*pi*Ks/N) //
     */
+
    goertzel(std::vector<double> a);
    void encode(int x);//对频率fx进行功率读取
    std::vector<std::complex< double > > C_c;
@@ -63,33 +64,33 @@ void goertzel::encode(int x)
         Q2=Q1;
         Q1=Q0;
     }
-    P=Q1*Q1+Q2*Q2-Q1*Q2*C;
+    P=std::norm(Q1)+std::norm(Q2)-Q1*Q2*C;
     P_p.push_back(P);
-    std::cout<<P.real()<<std::endl;
+   std::cout<<std::norm(P)<<std::endl;
 }
 
 void goertzel::dp_start(double a[8][3])
 {
     double dp[8][3];
 
-    dp[0][1]=a[0][0]-a[0][1];
-    dp[0][2]=a[0][2]-a[0][0];
+    dp[0][1]=(a[0][0]-a[0][1])/a[0][0];
+    dp[0][2]=(a[0][2]-a[0][0])/a[0][0];
     for (int i = 1; i < 8; i++)//分类讨论，区间重叠，误差恒为1，区间不重叠，脚踩头，脚没法min,只能取dp[i-1]的脚，两边区间无交点，//漏洞：3个区间相交无解(如何避免这种情况？频率相差大一点，N大一点)
     {
         if(a[i][0]==a[i-1][0])
         {
-            dp[i][1]=dp[i-1][2]+a[i][0]-a[i][1];
-            dp[i][2]=dp[i-1][2]-a[i][0]+a[i][2];
+            dp[i][1]=dp[i-1][2]+(a[i][0]-a[i][1])/a[i][0];
+            dp[i][2]=dp[i-1][2]+(-a[i][0]+a[i][2])/a[i][0];
             continue;
         }
         if(a[i][1]==a[i-1][2])
         {
-            dp[i][2]=std::min(dp[i-1][1],dp[i-1][2])+a[i][2]-a[i][0];
-            dp[i][1]=dp[i-1][1]+a[i][0]-a[i][1];
+            dp[i][2]=std::min(dp[i-1][1],dp[i-1][2])+(a[i][2]-a[i][0])/a[i][0];
+            dp[i][1]=dp[i-1][1]+(a[i][0]-a[i][1])/a[i][0];
             continue;
         }
-        dp[i][2]=std::min(dp[i-1][1],dp[i-1][2])+a[i][2]-a[i][0];
-        dp[i][1]=std::min(dp[i-1][1],dp[i-1][2])+a[i][0]-a[i][1];
+        dp[i][2]=std::min(dp[i-1][1],dp[i-1][2])+(a[i][2]-a[i][0])/a[i][0];
+        dp[i][1]=std::min(dp[i-1][1],dp[i-1][2])+(a[i][0]-a[i][1])/a[i][0];
     }
     //接下来读取K[8]
     double source =0;
@@ -122,9 +123,9 @@ void goertzel::k_count()
         double s_save[8][3];//TODO: 修改为动态大小，适配f
         for (int j = 0; j < f.size(); j++)//注意检查K的值不能是一样的，要跟上一个K比较，使用dp解决。不然在200~210范围内会出现重复解
         {
-            s_save[j][0]=f[j]*i/R;
-            s_save[j][1]=floor(s_save[j][0]);
-            s_save[j][2]=ceil(s_save[j][0]);
+            s_save[j][0]=f[j]*i/R;//实际值
+            s_save[j][1]=floor(s_save[j][0]);//向下取整
+            s_save[j][2]=ceil(s_save[j][0]);//向上取整
             //注意使用fabs，abs会将浮点数截断 4.29update:c++这int()取整看不懂，随缘取整，佛了//
         }
         goertzel::dp_start(s_save);

@@ -1,7 +1,7 @@
-#include <windows.h> 
+#include <windows.h>
 #include <mmsystem.h>
 #include <iostream>
-#include<fstream> 
+#include<fstream>
 #include<math.h>
 
 #define WAVE_HEAD_LENGTH 44//wav头文件长度
@@ -11,7 +11,7 @@
 #define MATH_PI 3.1415
 
 using namespace std;
-//.wav文件的文件头结构 
+//.wav文件的文件头结构
 typedef struct
 {
     char chRIFF[4];
@@ -24,56 +24,19 @@ typedef struct
     DWORD dwDATALen;
     //UINT8* pBufer;
 }WaveHeader;
-void MakeWaveData(int rate, int freq, int amp, char* p, int len)//采样率、频率、音量、采样点数
+void MakeWaveData(int rate, int freq, int freq2,int amp, char* p, int len)//采样率、频率、音量、采样点数
 {
-    int flag = 0;
-    if (m_channelbits == 16)        //16位
-    {
         if (m_channels == 1)
         {
             for (int i = 0; i < len; i++)
             {
-                INT16 v = amp/100*32768 * sin(2 * MATH_PI * freq * i / rate);
-                *(p + flag) = v & 0xFF;//低8位
-                *(p + flag + 1) = (v >> 8) & 0xFF;//16bit量化 高8位
-                flag += 2;
+                *(p + i) = (sin(i * (MATH_PI * 2) / rate * freq) *63 + 128)/2;
+                *(p + i) += (sin(i * (MATH_PI * 2) / rate * freq2) * 63  + 128)/2;
+                //*(p + i) += sin(i * (MATH_PI * 2) / rate * freq2) * amp * 128 / 100/2 + 128;
             }
         }
-        else
-        {
-            for (int i = 0; i < len; i++)
-            {
-                INT16 vl = amp / 100 * 32768 * sin(2 * MATH_PI * freq * i / rate) ;
-                INT16 vr = amp / 100 * 32768 * sin((2 * MATH_PI * freq * (i+5) )/ rate) ;
-                *(p + flag) = (vl & 0xFF);      
-                *(p + flag + 1) = ((vl >> 8) & 0xFF);
-                *(p + flag + 2) = (vr & 0xFF);
-                *(p + flag + 3) = ((vr >> 8) & 0xFF);
-                flag += 4;
-            }
-        }
-    }
-    else
-    {   
-        if (m_channels == 1)
-        {
-            for (int i = 0; i < len; i++)
-            {
-                *(p + i) = sin(i * (MATH_PI * 2) / rate * freq) * amp * 128 / 100 + 128;
-            }
-        }
-        else
-        {
-            for (int i = 0; i < len; i++)
-            {
-                *(p + flag)= sin(i * (MATH_PI * 2) / rate * freq) * amp * 128 / 100+128;
-                *(p + flag + 1)= sin((i+5) * (MATH_PI * 2) / rate * freq) * amp * 128 / 100+128;
-                flag += 2;
-            }
-        }
-    }
 }
-int Create(int freq, int volume, int durations)//频率、音量、持续时间
+int Create(int freq[6][2], int volume, int durations)//频率、音量、持续时间
 {
     WaveHeader *pHeader = new WaveHeader;
     DWORD totalLen = (m_samplefreq * m_channels * m_channelbits / 8) * durations + 44;//文件总长度=(采样率 * 通道数 * 比特数 / 8) * 持续时间(s)
@@ -109,11 +72,11 @@ int Create(int freq, int volume, int durations)//频率、音量、持续时间
 
     char *pWaveBuffer = new char[totalLen]; //音频数据
     memcpy(pWaveBuffer, pHeader, WAVE_HEAD_LENGTH);
-
-    MakeWaveData(pHeader->pwf.wf.nSamplesPerSec, freq, volume, pWaveBuffer+ WAVE_HEAD_LENGTH, m_samplefreq*durations);//采样点数
-
+    for(int i=0;i<6;i++){
+    MakeWaveData(pHeader->pwf.wf.nSamplesPerSec, freq[i][0],freq[i][1], volume, pWaveBuffer+ WAVE_HEAD_LENGTH+i*m_samplefreq, m_samplefreq);//采样点数
+      }
     ofstream ocout;
-    ocout.open("D:\\newWave.wav", ios::out | ios::binary);//以二进制形式打开文件
+    ocout.open("newWave0.wav", ios::out | ios::binary);//以二进制形式打开文件
     if (ocout)
         ocout.write(pWaveBuffer, totalLen);
     else
@@ -123,11 +86,4 @@ int Create(int freq, int volume, int durations)//频率、音量、持续时间
     delete(pHeader);
     return 1;
 }
-int main()
-{
-    if (Create(977, 10, 5))
-        cout << "success！" << endl;
-    else
-        cout << "fail！" << endl;
-    return 0;
-}
+

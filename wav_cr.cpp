@@ -69,12 +69,12 @@ void sin_generator(int freq1,int freq2,int time)//生成8bit单通道wav文件
     memcpy(sin_wave,pHeader,44);
     for (int i = 0; i <N; i++)
     {
-        sin_wave[i+44]=(sin(2*PI*i*freq1/8000)/2)*100;
-        sin_wave[i+44]+=sin(2*PI*i*freq2/8000)/2*100;
+        sin_wave[i+44]=(sin(2*PI*i*freq1/8000)/2)*128;
+        sin_wave[i+44]+=sin(2*PI*i*freq2/8000)/2*128;
         //cout<<sin_wave[i]<<endl;//test
     }
     ofstream sin_out;
-    sin_out.open("./sin_wave.wav", ios::out | ios::binary);//新建文件，一定要以二进制形式打开！
+    sin_out.open("E:\\goertzel\\sin_wave.wav", ios::out | ios::binary);//新建文件，一定要以二进制形式打开！
     if (sin_out)
         sin_out.write(sin_wave, totalLen);
     sin_out.close();
@@ -84,6 +84,6 @@ void sin_generator(int freq1,int freq2,int time)//生成8bit单通道wav文件
 }
 int main(int argc, char const *argv[])
 {
-    sin_generator(697,697,5);//频率1，频率2，时间（整数）
+    sin_generator(10000,10000,6);//频率1，频率2，时间（整数）
     return 0;
 }

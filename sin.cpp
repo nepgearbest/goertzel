@@ -24,9 +24,9 @@ void sin_generator(int freq1,int freq2,double time)
 }
 int main(int argc, char const *argv[])
 {
-    sin_generator(941,852,1.25);
+    sin_generator(697,1209,1);
     goertzel a(sin_wave);
-    for(int i=0;i<8;i++)
+    for(int i=0;i<7;i++)
     {
         a.encode(i);
     }
