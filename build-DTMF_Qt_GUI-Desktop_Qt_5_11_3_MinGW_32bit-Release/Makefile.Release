@@ -474,6 +474,44 @@ release/mainwindow.o: ../DTMF_Qt_GUI/mainwindow.cpp ../DTMF_Qt_GUI/mainwindow.h 
 		../../qt/5.11.3/mingw53_32/include/QtWidgets/qtabwidget.h \
 		../../qt/5.11.3/mingw53_32/include/QtGui/qicon.h \
 		ui_mainwindow.h \
+		../../qt/5.11.3/mingw53_32/include/QtCore/QVariant \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/QApplication \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/qapplication.h \
+		../../qt/5.11.3/mingw53_32/include/QtCore/qcoreapplication.h \
+		../../qt/5.11.3/mingw53_32/include/QtCore/qeventloop.h \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		../../qt/5.11.3/mingw53_32/include/QtGui/qguiapplication.h \
+		../../qt/5.11.3/mingw53_32/include/QtGui/qinputmethod.h \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/QGridLayout \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/qgridlayout.h \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/qlayout.h \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/qlayoutitem.h \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/qboxlayout.h \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/QLabel \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/qlabel.h \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/qframe.h \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/QMenuBar \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/qmenubar.h \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/qmenu.h \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/qaction.h \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/qactiongroup.h \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/QPushButton \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/qpushbutton.h \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/qabstractbutton.h \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/QSpacerItem \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/QStatusBar \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/qstatusbar.h \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/QTextEdit \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/qtextedit.h \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		../../qt/5.11.3/mingw53_32/include/QtGui/qtextdocument.h \
+		../../qt/5.11.3/mingw53_32/include/QtGui/qtextoption.h \
+		../../qt/5.11.3/mingw53_32/include/QtGui/qtextcursor.h \
+		../../qt/5.11.3/mingw53_32/include/QtGui/qtextformat.h \
+		../../qt/5.11.3/mingw53_32/include/QtGui/qpen.h \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/QToolBar \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/qtoolbar.h \
+		../../qt/5.11.3/mingw53_32/include/QtWidgets/QWidget \
 		D:/opencv/opencv/mingw-cv/install/include/opencv2/core/core.hpp \
 		D:/opencv/opencv/mingw-cv/install/include/opencv2/core.hpp \
 		D:/opencv/opencv/mingw-cv/install/include/opencv2/core/cvdef.h \
@@ -530,20 +568,12 @@ release/mainwindow.o: ../DTMF_Qt_GUI/mainwindow.cpp ../DTMF_Qt_GUI/mainwindow.h 
 		../../qt/5.11.3/mingw53_32/include/QtNetwork/qtnetwork-config.h \
 		../../qt/5.11.3/mingw53_32/include/QtCore/QSharedDataPointer \
 		../../qt/5.11.3/mingw53_32/include/QtCore/QUrl \
-		../../qt/5.11.3/mingw53_32/include/QtCore/QVariant \
 		../../qt/5.11.3/mingw53_32/include/QtMultimedia/qmediaenumdebug.h \
 		../../qt/5.11.3/mingw53_32/include/QtCore/qmetaobject.h \
 		../../qt/5.11.3/mingw53_32/include/QtMultimedia/qaudio.h \
 		../../qt/5.11.3/mingw53_32/include/QtNetwork/qnetworkconfiguration.h \
 		../../qt/5.11.3/mingw53_32/include/QtMultimedia/QSoundEffect \
 		../../qt/5.11.3/mingw53_32/include/QtMultimedia/qsoundeffect.h \
-		../../qt/5.11.3/mingw53_32/include/QtWidgets/QApplication \
-		../../qt/5.11.3/mingw53_32/include/QtWidgets/qapplication.h \
-		../../qt/5.11.3/mingw53_32/include/QtCore/qcoreapplication.h \
-		../../qt/5.11.3/mingw53_32/include/QtCore/qeventloop.h \
-		../../qt/5.11.3/mingw53_32/include/QtWidgets/qdesktopwidget.h \
-		../../qt/5.11.3/mingw53_32/include/QtGui/qguiapplication.h \
-		../../qt/5.11.3/mingw53_32/include/QtGui/qinputmethod.h \
 		../../qt/5.11.3/mingw53_32/include/QtCore/QFile \
 		../../qt/5.11.3/mingw53_32/include/QtMultimedia/QAudioFormat \
 		../../qt/5.11.3/mingw53_32/include/QtMultimedia/qaudioformat.h \

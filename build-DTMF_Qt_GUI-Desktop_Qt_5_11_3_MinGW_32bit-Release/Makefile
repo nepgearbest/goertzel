@@ -216,6 +216,7 @@ Makefile: ../DTMF_Qt_GUI/DTMF_Qt_GUI.pro ../../qt/5.11.3/mingw53_32/mkspecs/win3
 		../../qt/5.11.3/mingw53_32/mkspecs/features/qt_config.prf \
 		../../qt/5.11.3/mingw53_32/mkspecs/win32-g++/qmake.conf \
 		../../qt/5.11.3/mingw53_32/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../qt/5.11.3/mingw53_32/mkspecs/features/exclusive_builds.prf \
 		../../qt/5.11.3/mingw53_32/mkspecs/features/toolchain.prf \
 		../../qt/5.11.3/mingw53_32/mkspecs/features/default_pre.prf \
@@ -401,6 +402,7 @@ Makefile: ../DTMF_Qt_GUI/DTMF_Qt_GUI.pro ../../qt/5.11.3/mingw53_32/mkspecs/win3
 ../../qt/5.11.3/mingw53_32/mkspecs/features/qt_config.prf:
 ../../qt/5.11.3/mingw53_32/mkspecs/win32-g++/qmake.conf:
 ../../qt/5.11.3/mingw53_32/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../qt/5.11.3/mingw53_32/mkspecs/features/exclusive_builds.prf:
 ../../qt/5.11.3/mingw53_32/mkspecs/features/toolchain.prf:
 ../../qt/5.11.3/mingw53_32/mkspecs/features/default_pre.prf:

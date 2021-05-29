@@ -27,10 +27,20 @@ MainWindow::MainWindow(QWidget *parent) :
 
   //ui->label->clear();
   //背景图片显示
-  Mat src;
-  Mat temp=imread("./test.png",1);
- cvtColor(temp, src,COLOR_BGR2RGB);
-  QImage Qtemp=QImage((unsigned char*)(src.data),src.cols,src.rows,QImage::Format_RGB888);
+  Mat src,dst;
+  Mat temp=imread("./test.png",cv::IMREAD_COLOR);
+
+  cvtColor(temp, src,COLOR_BGR2RGB);
+
+  //Rect sel=Rect(0,0,680,480);
+  //cv::resize(src,dst,cv::Size(),2,2);
+  //dst = src(sel);
+  std::cout<<src.channels()<<std::endl;
+  std::cout<<std::flush;
+
+  //imshow("test",dst);
+  //QImage Qtemp1=QImage::
+  QImage Qtemp=QImage((unsigned char*)(src.data),src.cols,src.rows,src.cols*src.channels(),QImage::Format_RGB888);
   ui->label->setPixmap(QPixmap::fromImage(Qtemp));
   ui->label->resize(Qtemp.size());
   ui->label->show();
@@ -266,7 +276,7 @@ void MainWindow::on_pushButton_15_clicked()
   Mat src;
   Mat temp=imread("./test.png",1);
  cvtColor(temp, src,COLOR_BGR2RGB);
-  QImage Qtemp=QImage((unsigned char*)(src.data),src.cols,src.rows,QImage::Format_RGB888);
+  QImage Qtemp=QImage((unsigned char*)(src.data),src.cols,src.rows,src.cols*src.channels(),QImage::Format_RGB888);
     QString a=ui->textEdit_2->toPlainText();
     if(a==code)
       {
@@ -280,7 +290,7 @@ void MainWindow::on_pushButton_15_clicked()
     else
       {
           cvtColor(temp,src,COLOR_RGB2GRAY);
-           Qtemp=QImage((unsigned char*)(src.data),src.cols,src.rows,QImage::Format_Grayscale8);
+           Qtemp=QImage((unsigned char*)(src.data),src.cols,src.rows,src.cols*src.channels(),QImage::Format_Grayscale8);
            ui->label->setPixmap(QPixmap::fromImage(Qtemp));
            ui->label->resize(Qtemp.size());
            ui->label->show();
